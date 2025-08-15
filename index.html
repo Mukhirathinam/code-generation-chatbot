@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Code Chatbot</title>
+    <link rel="stylesheet" href="styles_ls.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script> <!-- Google Login -->
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="icon-container">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <h2>LOGIN</h2>
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember me?</label>
+            </div>
+
+            <button onclick="handleLogin()">LOGIN</button>
+            
+            <a href="#" class="forgot-password">Forgot Password?</a>
+
+            <div class="or-divider">
+                <span>OR</span>
+            </div>
+
+            <div class="social-login">
+                <div id="google-login-btn"></div> <!-- Google Login Button -->
+            </div>
+
+            <p class="signup-text">Need an account? <a href="signup.html">SIGN UP</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+    function handleLogin() {
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
+    
+        // Simple validation (you can add more complex validation or backend verification)
+        if (email === "" || password === "") {
+            alert("Please enter both email and password.");
+            return;
+        }
+    
+        // Simulated login success
+        // In real scenarios, you would make a request to your backend here
+    
+        // Redirect to ui.html after login
+        window.location.href = "ui.html";
+    }
+</script>
+</body>
+</html>

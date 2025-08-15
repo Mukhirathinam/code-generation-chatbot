@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Compiler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .compiler-container {
+            width: 80%;
+            background: #252526;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        h3 {
+            margin-bottom: 20px;
+            color: #ddd;
+        }
+        textarea {
+            width: 50%;
+            height: 200px;
+            background: #fff;
+            color: #000;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: monospace;
+            resize: none;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background: #444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background: #555;
+        }
+        pre {
+            background: #333;
+            color: #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="compiler-container">
+        <h3>Python Compiler</h3>
+        <textarea id="python-code" oninput="saveCode()"></textarea>
+        <br>
+        <button type="button" onclick="runPythonCode(event)">Run Code</button>
+        <pre id="compiler-output"></pre>
+    </div>
+
+    <script>
+        // Load the code from localStorage when the page loads
+        window.onload = function() {
+            const code = localStorage.getItem('pythonCode') || '';
+            const modifiedCode = localStorage.getItem('modifiedPythonCode') || code;
+            document.getElementById('python-code').value = modifiedCode;
+        };
+
+        // Save the modified code to localStorage whenever the user types
+        function saveCode() {
+            const code = document.getElementById('python-code').value;
+            localStorage.setItem('modifiedPythonCode', code);
+        }
+
+        async function runPythonCode(event) {
+            event.preventDefault();
+            console.log("Run Code clicked");
+
+            const code = document.getElementById("python-code").value;
+            const outputElement = document.getElementById("compiler-output");
+
+            // Display the code being executed
+            outputElement.innerText = `Code:\n${code}\n\nExecuting...\n`;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5001/execute', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        script: code
+                    }),
+                });
+
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+                }
+
+                const result = await response.json();
+                let outputText = `Code:\n${code}\n\nOutput:\n`;
+                
+                if (result.output) {
+                    outputText += result.output;
+                } else if (result.error) {
+                    outputText += `Error: ${result.error}`;
+                } else {
+                    outputText += "Error: Something went wrong.";
+                }
+
+                outputElement.innerText = outputText;
+
+                // Scroll to output
+                setTimeout(() => {
+                    outputElement.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            } catch (error) {
+                console.error("Fetch error details:", error);
+                outputElement.innerText = `Code:\n${code}\n\nError: Could not connect to the server. ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

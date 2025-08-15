@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Intro Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .intro {
+      font-size: 3rem;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      animation: introAnim 3s ease-in-out forwards;
+      text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 40px #0ff;
+      opacity: 0;
+      transform: scale(0.5);
+    }
+
+    @keyframes introAnim {
+      0% {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="intro">Welcome to signup page </div>
+
+  <script>
+    setTimeout(() => {
+      window.location.href = "signup.html"; // Replace with your actual sign-in page
+    }, 2000);
+  </script>
+</body>
+</html>

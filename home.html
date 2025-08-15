@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot - Your AI Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fas fa-robot"></i>
+            <span>ChatBot</span>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            
+            <div class="nav-right">
+                <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon"></i></button>
+                <a href="animation.html" class="signup-btn">Sign Up</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Smart AI Assistant</h1>
+            <p>Experience intelligent conversations with our advanced AI chatbot</p>
+            <div class="hero-buttons">
+                <a href="#chat-container" class="primary-btn">Start Chatting</a>
+                <a href="#features" class="secondary-btn">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="image22.png" alt="AI Chatbot" class="floating">
+        </div>
+    </section>
+
+    <!-- Chat Interface -->
+    <section id="chat-container">
+        <div class="chat-box">
+            <div class="chat-header">
+                <div class="chat-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chat-title">
+                    <h3>ChatBot</h3>
+                    <span class="status">Online</span>
+                </div>
+                <div class="chat-actions">
+                    <button class="minimize-btn"><i class="fas fa-minus"></i></button>
+                    <button class="expand-btn"><i class="fas fa-expand"></i></button>
+                </div>
+            </div>
+            <div class="chat-messages">
+                <div class="message bot">
+                    <div class="message-content">
+                        <p>Hello! I'm ChatBot, your AI assistant. How can I help you today?</p>
+                    </div>
+                    <span class="message-time">Just now</span>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" placeholder="Type your message..." id="user-input">
+                <button class="send-btn"><i class="fas fa-paper-plane"></i></button>
+                <button class="voice-btn"><i class="fas fa-microphone"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="content-section">
+        <h2 class="section-title">Why Choose Our ChatBot?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                <h3>Smart AI Responses</h3>
+                <p>Advanced NLP to understand and process your queries effectively</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-clock"></i></div>
+                <h3>24/7 Support</h3>
+                <p>Always available whenever you need assistance</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+                <h3>Secure & Private</h3>
+                <p>Strong encryption to protect your conversations and data</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                <h3>Multilingual</h3>
+                <p>Communicate in multiple languages with ease</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="content-section">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-grid">
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="image1.png" alt="ChatBot 2.0">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">April 2, 2025</span>
+                    <h3>ChatBot 2.0 Released</h3>
+                    <p>Our latest version comes with enhanced NLP capabilities and a new sleek interface.</p>
+                    <a href="news1.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="image2.png" alt="AI Conference">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">March 15, 2025</span>
+                    <h3>AI Conference 2025</h3>
+                    <p>Join us at the Global AI Summit where we unveil the future of conversational AI.</p>
+                    <a href="news2.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-image">
+                    <img src="image3.png" alt="Security Upgrade">
+                </div>
+                <div class="news-content">
+                    <span class="news-date">February 28, 2025</span>
+                    <h3>Security Upgrade</h3>
+                    <p>We've implemented advanced encryption to keep your conversations private.</p>
+                    <a href="news3.html" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="content-section">
+        <h2 class="section-title">About Us</h2>
+        <div class="about-container">
+            <div class="about-image">
+                <img src="image11.png" alt="About ChatBot">
+            </div>
+            <div class="about-content">
+                <p>Welcome to ChatBot, your intelligent AI-powered assistant designed to enhance conversations and provide instant responses. Our chatbot leverages advanced Natural Language Processing (NLP) and AI technologies to offer human-like interactions.</p>
+                
+                <h3>Our Mission</h3>
+                <p>We aim to create an AI chatbot that enhances user interactions by providing quick, relevant, and helpful responses across various industries.</p>
+                
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Location</h3>
+                    <p>Melbourne, Australia</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>support@chatbot.com</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <p>+1 234 567 890</p>
+                </div>
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Hours</h3>
+                    <p>24/7 Support</p>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3911.5878853904916!2d76.95529727481923!3d11.016844292148894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba8584f8f055555%3A0x58a4387d35cf3f4e!2sCoimbatore%2C%20Tamil%20Nadu%2C%20India!5e0!3m2!1sen!2sin!4v1614016451859!5m2!1sen!2sin" 
+                width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="footer-logo">
+                    <i class="fas fa-robot"></i>
+                    <span>ChatBot</span>
+                </div>
+                <p>Your AI Assistant for smart conversations.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="signup.html">Sign Up</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Features</h3>
+                <ul class="footer-links">
+                    <li>Smart Responses</li>
+                    <li>Voice Integration</li>
+                    <li>Personalized Replies</li>
+                    <li>Multilingual Support</li>
+                    <li>Context Awareness</li>
+                    <li>Secure Messaging</li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get the latest updates</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email address">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 ChatBot. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            height: 80vh;
+            background: #252526;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+        .history {
+            width: 30%;
+            background: #1e1e1e;
+            padding: 10px;
+            overflow-y: auto;
+            border-right: 1px solid #333;
+            transition: width 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .history:hover {
+            width: 35%;
+        }
+        .history-heading {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px;
+            border-bottom: 1px solid #444;
+            margin-bottom: 5px;
+        }
+        .history-item {
+            padding: 8px;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+            transition: background 0.3s;
+        }
+        .history-item:hover {
+            background: #333;
+        }
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .profile-btn {
+            width: 40px;
+            height: 40px;
+            background: #0078D4;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.3s;
+        }
+        .profile-btn:hover {
+            transform: scale(1.1);
+        }
+        .profile-info {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: #333;
+            padding: 10px;
+            border-radius: 5px;
+            z-index: 10;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+        .profile-btn:hover .profile-info {
+            display: block;
+        }
+        .compile-btn {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .compile-btn:hover {
+            background: #218838;
+        }
+        .chat-box {
+            height: 400px;
+            width: 100%;
+            overflow-y: auto;
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+            background: #1e1e1e;
+            border-radius: 5px;
+            transition: height 0.3s;
+        }
+        .chat-box:hover {
+            height: 450px;
+        }
+        .message {
+            display: flex;
+            margin: 10px 0;
+        }
+        .user-message {
+            justify-content: flex-end;
+            text-align: right;
+        }
+        .bot-message {
+            justify-content: flex-start;
+        }
+        .message p {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .user-message p {
+            background: #0078D4;
+            color: white;
+            align-self: flex-end;
+        }
+        .bot-message p {
+            background: #333;
+            color: #ddd;
+        }
+        .code-block {
+            background: #282C34;
+            color: #61DAFB;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            overflow-x: auto;
+            margin-top: 5px;
+        }
+        .icon-bar {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+            margin-top: 5px;
+        }
+        .icon-bar button {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            border-radius: 3px;
+            transition: background 0.3s;
+        }
+        .icon-bar button:hover {
+            background: #555;
+        }
+        .input-area {
+            display: flex;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .input-box {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            background: #333;
+            color: white;
+            transition: background 0.3s;
+        }
+        .input-box:focus {
+            background: #444;
+            outline: none;
+        }
+        .send-btn {
+            padding: 10px 15px;
+            border: none;
+            background: #28a745;
+            color: white;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .send-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="history">
+            <div class="history-heading">History</div>
+            <div class="history-item">Today</div>
+            <div class="history-item">Sum of Numbers</div>
+            <div class="history-item">Blind Assistance Device Design</div>
+            <div class="history-item">Algorithm Optimization</div>
+            <div class="history-item">Data Structure Implementation</div>
+            <div class="history-item">Machine Learning Basics</div>
+            <div class="history-item">Network Security Concepts</div>
+        </div>
+        <div class="chat-area">
+            <div class="header">
+                <button class="compile-btn" onclick="window.location.href='compiler.html'">Compile</button>
+                <div class="profile-btn" id="profile-btn">
+                    P
+                    <div class="profile-info" id="profile-info">
+                        <p id="username"></p>
+                        <p>Password: [Hidden]</p>
+                    </div>
+                </div>
+            </div>
+            <h2 style="text-align: center;">Code Chatbot</h2>
+            <div class="chat-box" id="chat-box"></div>
+            <div class="input-area">
+                <input type="text" id="user-input" class="input-box" placeholder="Ask a coding question..." onkeypress="handleKeyPress(event)">
+                <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to retrieve credentials from localStorage
+        function getCredentials() {
+            const email = localStorage.getItem('loggedInEmail');
+            const password = localStorage.getItem('loggedInPassword');
+            return { email, password } || { email: "user@example.com", password: "password123" }; // Fallback
+        }
+
+        // Display profile info
+        function displayProfile() {
+            const { email, password } = getCredentials();
+            const profileInfo = document.getElementById("profile-info");
+            const usernameDisplay = document.getElementById("username");
+            if (email) {
+                usernameDisplay.textContent = `Username: ${email}`;
+            } else {
+                usernameDisplay.textContent = "Username: Not logged in";
+            }
+        }
+
+        // Call displayProfile on page load
+        window.onload = displayProfile;
+
+        async function sendMessage() {
+            let inputField = document.getElementById("user-input");
+            let chatBox = document.getElementById("chat-box");
+            let userMessage = inputField.value.trim();
+
+            if (userMessage === "") return;
+
+            // Display user message
+            chatBox.innerHTML += `<div class='message user-message'><p>${userMessage} <button onclick='editPrompt(this)'>✏️</button></p></div>`;
+            
+            // Show loading message
+            chatBox.innerHTML += `<div class='message bot-message'><p>Generating code...</p></div>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            try {
+                // Send request to Flask backend
+                const response = await fetch('http://127.0.0.1:5000/generate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ prompt: userMessage })
+                });
+
+                const data = await response.json();
+                
+                // Remove loading message
+                chatBox.lastElementChild.remove();
+
+                if (data.error) {
+                    chatBox.innerHTML += `<div class='message bot-message'><p>${data.error}</p></div>`;
+                } else {
+                    // Display generated code with all features
+                    chatBox.innerHTML += `<div class='message bot-message'><p>Here's your code:</p></div>`;
+                    chatBox.innerHTML += `<div class='message bot-message'><div class='code-block'>${data.response}</div>
+                        <div class='icon-bar'>
+                            <button onclick='copyCode(this)'>📋</button>
+                            <button onclick='speakCode(this)'>🔊</button>
+                            <button onclick='likeResponse(this)'>👍</button>
+                            <button onclick='dislikeResponse(this)'>👎</button>
+                        </div>
+                    </div>`;
+                }
+            } catch (error) {
+                chatBox.lastElementChild.remove();
+                chatBox.innerHTML += `<div class='message bot-message'><p>Error: Could not connect to server</p></div>`;
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            inputField.value = "";
+        }
+
+        function copyCode(button) {
+            let codeBlock = button.parentElement.previousElementSibling.innerText;
+            navigator.clipboard.writeText(codeBlock);
+            button.innerText = "✔";
+            setTimeout(() => button.innerText = "📋", 1500);
+        }
+
+        function speakCode(button) {
+            let codeBlock = button.parentElement.previousElementSibling.innerText;
+            let speech = new SpeechSynthesisUtterance(codeBlock);
+            window.speechSynthesis.speak(speech);
+        }
+
+        function likeResponse(button) {
+            alert("You liked this response!");
+        }
+
+        function dislikeResponse(button) {
+            alert("You disliked this response.");
+        }
+
+        function editPrompt(button) {
+            let promptText = prompt("Edit your question:", button.parentElement.innerText.slice(0, -2));
+            if (promptText !== null) {
+                document.getElementById("user-input").value = promptText;
+            }
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+        }
+    </script>
+</body>
+</html>
